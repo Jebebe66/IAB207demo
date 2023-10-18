@@ -14,6 +14,10 @@ class User(db.Model, UserMixin):
     # relation to call user.comments and comment.created_by
     comments = db.relationship('Comment', backref='user')
 
+    #string print method
+    def __repr__(self):
+        return f"Name: {self.name}"
+
 
 
 class Destination(db.Model):

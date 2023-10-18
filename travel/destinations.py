@@ -7,16 +7,16 @@ from werkzeug.utils import secure_filename
 #additional import:
 from flask_login import login_required, current_user
 
-bp = Blueprint('destination', __name__, url_prefix='/destinations')
+destbp = Blueprint('destination', __name__, url_prefix='/destinations')
 
-@bp.route('/<id>')
+@destbp.route('/<id>')
 def show(id):
     destination = Destination.query.filter_by(id=id).first()
-    # create the comment form
+    # create comment form
     cform = CommentForm()    
     return render_template('destinations/show.html', destination=destination, form=cform)
 
-@bp.route('/create', methods = ['GET', 'POST'])
+@destbp.route('/create', methods = ['GET', 'POST'])
 @login_required
 def create():
   print('Method type: ', request.method)
@@ -49,7 +49,7 @@ def check_upload_file(form):
   fp.save(upload_path)
   return db_upload_path
 
-@bp.route('/<destination>/comment', methods = ['GET', 'POST'])  
+@destbp.route('/<destination>/comment', methods = ['GET', 'POST'])  
 @login_required
 def comment(destination):  
     form = CommentForm()  

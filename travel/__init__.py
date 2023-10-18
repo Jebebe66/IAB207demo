@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from flask_bootstrap import Bootstrap4
+from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
@@ -9,12 +9,12 @@ app=Flask(__name__)
 def create_app():
     
     #we use this utility module to display forms quickly
-    bootstrap = Bootstrap4(app)
+    bootstrap = Bootstrap5(app)
 
     #A secret key for the session object
     app.secret_key='somerandomvalue'
 
-    #Configue and initialise DB
+    #Configure and initialise DB
     app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///travel123.sqlite'
     db.init_app(app)
     
@@ -33,7 +33,7 @@ def create_app():
     from . import views
     app.register_blueprint(views.mainbp)
     from . import destinations
-    app.register_blueprint(destinations.bp)
+    app.register_blueprint(destinations.destbp)
     from . import auth
     app.register_blueprint(auth.bp)
 
